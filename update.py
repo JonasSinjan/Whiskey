@@ -16,10 +16,10 @@ category = input("Enter: 'B', 'S', 'I' or 'O': ")
 if category not in ['B', 'S', 'I', 'O']:
     print("You entered an invalid response. Please enter only 'B', 'S', 'I', 'O'")
 
-if desired_list == 'T':
-    with open("whiskey_tried.txt", "r+") as search:
-        lines = search.readlines()
-        lines_strip = [line.strip('\n') for line in lines]
+with open("whiskey_tried.txt", "r+") as search:
+    lines = search.readlines()
+    lines_strip = [line.strip('\n') for line in lines]
+    if desired_list == 'T':
         if whiskey_update not in lines_strip:
             for i, line in enumerate(lines):
                 line = line[0]  # remove '\n' at end of line
@@ -30,30 +30,25 @@ if desired_list == 'T':
             search.seek(0)
             lines.insert(i + 2, f"{whiskey_update}\n")
             search.writelines(lines)
-
         else:
             print("This whiskey already exists in the whiskey_tried file")
 
-    with open("whiskey_wishlist.txt", "r+") as search:
-        lines = search.readlines()
-        lines_strip = [line.strip('\n') for line in lines]
+    else:
+        if whiskey_update in lines_strip:
+            print("You have already tried it! - It has not been added to your wishlist.")
+
+with open("whiskey_wishlist.txt", "r+") as search:
+    lines = search.readlines()
+    lines_strip = [line.strip('\n') for line in lines]
+
+    if desired_list == 'T':
         if whiskey_update in lines_strip:
             line_num = lines_strip.index(whiskey_update)
             del lines[line_num]
             search.seek(0)
             search.writelines(lines)
             print(f"{whiskey_update} was present in your wishlist, it has now been removed")
-
-elif desired_list == 'W':
-    with open("whiskey_tried.txt", "r+") as search:
-        lines = search.readlines()
-        lines_strip = [line.strip('\n') for line in lines]
-        if whiskey_update in lines_strip:
-            print("You have already tried it! - It has not been added to your wishlist.")
-
-    with open("whiskey_wishlist.txt", "r+") as search:
-        lines = search.readlines()
-        lines_strip = [line.strip('\n') for line in lines]
+    else:
         if whiskey_update not in lines_strip:
             for i, line in enumerate(lines):
                 line = line[0]  # remove '\n' at end of line
@@ -67,5 +62,3 @@ elif desired_list == 'W':
 
         else:
             print("This whiskey already exists in the whiskey_wishlist file")
- 
-

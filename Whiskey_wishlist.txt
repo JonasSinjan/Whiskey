@@ -1,5 +1,6 @@
 Bourbon/American
 
+Heaven Hill 6
 Booker's
 Knob Creek Small Batch
 Longbranch
@@ -30,7 +31,7 @@ Cragganmore 12
 Octomore
 Bruichladdich 12
 Kilochman Machir Bay
-
+Caol Ila 12
 
 Irish
 

@@ -3,7 +3,7 @@ Bourbon/American
 Booker's
 Knob Creek Small Batch
 Longbranch
-Elijah Craig
+Elijah Craig Small Batch
 Four Roses Single Barrell
 Evan Williams White Label
 Pappy Van Winkle
@@ -11,6 +11,15 @@ Old Rip Van Winkle
 Old Forester
 Jeffersons
 Blanton's
+Weller
+Angel's Envy
+George T. Stagg.
+Stagg Jr.
+Elmer T. Lee
+Larceny
+Henry Mckenna 10 Bib
+Old Forester 1920
+Balcones
 
 Scotch
 

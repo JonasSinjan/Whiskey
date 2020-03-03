@@ -8,7 +8,7 @@ if desired_list == 'T':
 else:
     str_var = 'wishlist'
 
-whiskey_update = input(f"Type the Whiskey you wish to update whiskey_{str_var}.txt: ")
+whiskey_update = input(f"Type the whiskey you wish to update whiskey_{str_var}.txt: ")
 
 print("Bourbon/American, Scotch, Irish or Other?")
 category = input("Enter: 'B', 'S', 'I' or 'O': ")
@@ -19,8 +19,8 @@ if category not in ['B', 'S', 'I', 'O']:
 if desired_list == 'T':
     with open("whiskey_tried.txt", "r+") as search:
         lines = search.readlines()
-        lines = [line.strip('\n') for line in lines]
-        if whiskey_update not in lines:
+        lines_strip = [line.strip('\n') for line in lines]
+        if whiskey_update not in lines_strip:
             for i, line in enumerate(lines):
                 line = line[0]  # remove '\n' at end of line
                 if category == line:
@@ -34,11 +34,27 @@ if desired_list == 'T':
         else:
             print("This whiskey already exists in the whiskey_tried file")
 
-elif desired_list == 'W':
     with open("whiskey_wishlist.txt", "r+") as search:
         lines = search.readlines()
-        lines = [line.strip('\n') for line in lines]
-        if whiskey_update not in lines:
+        lines_strip = [line.strip('\n') for line in lines]
+        if whiskey_update in lines_strip:
+            line_num = lines_strip.index(whiskey_update)
+            del lines[line_num]
+            search.seek(0)
+            search.writelines(lines)
+            print(f"{whiskey_update} was present in your wishlist, it has now been removed")
+
+elif desired_list == 'W':
+    with open("whiskey_triedt.txt", "r+") as search:
+        lines = search.readlines()
+        lines_strip = [line.strip('\n') for line in lines]
+        if whiskey_update in lines_strip:
+            print("You have already tried it! - It has not been added to your wishlist.")
+
+    with open("whiskey_wishlist.txt", "r+") as search:
+        lines = search.readlines()
+        lines_strip = [line.strip('\n') for line in lines]
+        if whiskey_update not in lines_strip:
             for i, line in enumerate(lines):
                 line = line[0]  # remove '\n' at end of line
                 if category == line:

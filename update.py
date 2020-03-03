@@ -45,7 +45,7 @@ if desired_list == 'T':
             print(f"{whiskey_update} was present in your wishlist, it has now been removed")
 
 elif desired_list == 'W':
-    with open("whiskey_triedt.txt", "r+") as search:
+    with open("whiskey_tried.txt", "r+") as search:
         lines = search.readlines()
         lines_strip = [line.strip('\n') for line in lines]
         if whiskey_update in lines_strip:

@@ -12,19 +12,27 @@ else:
 whiskey_update = input(f"Type the whiskey you wish to update whiskey_{str_var}.txt: ")
 
 print("Bourbon/American, Scotch, Irish or Other?")
-category = input("Enter: 'B', 'S', 'I' or 'O': ")
+category_start = input("Enter: 'B', 'S', 'I' or 'O': ")
 
-while category not in ['B', 'S', 'I', 'O']:
+while category_start not in ['B', 'S', 'I', 'O']:
     print("You entered an invalid response.")
-    category = input("Please enter only 'B', 'S', 'I', 'O': ")
+    category_start = input("Please enter only 'B', 'S', 'I', 'O': ")
+
+if category_start == 'B':
+    category = 'Bourbon/American'
+elif category_start == 'S':
+    category = 'Scotch'
+elif category_start == 'I':
+    category = 'Irish'
+elif category_start == 'O':
+    category = 'Other'
 
 with open("whiskey_tried.txt", "r+") as search:
     lines = search.readlines()
     lines_strip = [line.strip('\n') for line in lines]
     if desired_list == 'T':
         if whiskey_update not in lines_strip:
-            for i, line in enumerate(lines):
-                line = line[0]  # remove '\n' at end of line
+            for i, line in enumerate(lines_strip):  # remove '\n' at end of line
                 if category == line:
                     print(line, i)
                     break
@@ -52,15 +60,16 @@ with open("whiskey_wishlist.txt", "r+") as search:
             print(f"{whiskey_update} was present in your wishlist, it has now been removed.")
     else:
         if whiskey_update not in lines_strip:
-            for i, line in enumerate(lines):
-                line = line[0]  # remove '\n' at end of line
+            for i, line in enumerate(lines_strip): # remove '\n' at end of line
                 if category == line:
                     print(line, i)
                     break
 
             search.seek(0)
+            print(i)
             lines.insert(i + 2, f"{whiskey_update}\n")
             search.writelines(lines)
+            print(f"This whiskey: {whiskey_update} has been added to your wishlist under the category: {category}!")
 
         else:
             print("This whiskey already exists in the whiskey_wishlist file.")
